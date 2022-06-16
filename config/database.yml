@@ -1,0 +1,21 @@
+
+default: &default
+  adapter: postgresql
+  host: localhost
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 50000
+  username: postgres
+  password: 1234
+development:
+  <<: *default
+  database: TCGenerator_development
+
+test:
+  <<: *default
+  database: TCGenerator_test
+
+production:
+  <<: *default
+  database: TCGenerator_production
+  username: TCGenerator
+  password: <%= ENV['TCGENERATOR_DATABASE_PASSWORD'] %>
